@@ -3,14 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <title>12_动画1</title>
+  <style>
+    /*显示时的样式*/
+    .test-transition {
+      transition: all 2s ease;
+      height: 30px;
+      padding: 10px;
+      background-color: #eee;
+      overflow: hidden;
+    }
+    /*隐藏时的样式*/
+    /* .test-enter 定义进入的开始状态 */
+    /* .test-leave 定义离开的结束状态 */
+    .test-enter, .test-leave {
+      height: 0;
+      padding: 0 10px;
+      opacity: 0;
+    }
+  </style>
 </head>
 <body>
 <div id="demo">
+  <div v-show="show" transition="test">hello</div>
+  <button @click="show=!show">切换</button>
 </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
+  //监视动画(生命周期)
+  Vue.transition('test', {
+    //生命周期回调函数(钩子)
+    beforeEnter: function (el) {
+      el.textContent = 'beforeEnter'
+      console.log('beforeEnter()')
+    },
+    enter: function (el) {
+      el.textContent = 'enter'
+      console.log('enter()')
+    },
+    afterEnter: function (el) {
+      el.textContent = 'afterEnter'
+      console.log('afterEnter()')
+    },
+    beforeLeave: function (el) {
+      el.textContent = 'beforeLeave'
+      console.log('beforeLeave()')
+    },
+    leave: function (el) {
+      el.textContent = 'leave'
+      console.log('leave()')
+    },
+    afterLeave: function (el) {
+      el.textContent = 'afterLeave'
+      console.log('afterLeave()')
+    },
+  })
 
+  new Vue({
+    el : '#demo',
+    data : {
+      show: true
+    }
+  })
 </script>
 </body>
 </html>
