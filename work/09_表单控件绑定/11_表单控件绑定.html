@@ -15,48 +15,69 @@
 3. 延迟指定时间才更新: debounce='1000'
 -->
 <div id="demo">
-  <span>Message is:</span><br>
-  <input type="text"><br>
-  <textarea></textarea>
+  <span>Message is:{{msg}}</span><br>
+  <input type="text" v-model="msg"><br>
+  <textarea v-model="msg"></textarea>
 
   <hr>
-  <input type="checkbox" id="checkbox">
-  <label for="checkbox"></label>
+  <input type="checkbox" id="checkbox" v-model="like">
+  <label for="checkbox">{{like}}</label>
 
   <hr>
-  <input type="checkbox" id="jack">
+  <input type="checkbox" id="jack" value="JACK" v-model="names">
   <label for="jack">Jack</label>
-  <input type="checkbox" id="john">
+  <input type="checkbox" id="john" value="JOHN" v-model="names">
   <label for="john">John</label>
-  <input type="checkbox" id="mike">
+  <input type="checkbox" id="mike" value="MIKE" v-model="names">
   <label for="mike">Mike</label>
   <br>
-  <span>Checked names:</span>
+  <span>Checked names:{{names | json}}</span>
 
   <hr>
-  <input type="radio" id="female">
-  <label for="female">MALE</label>
+  <input type="radio" id="male" v-model="sex" value="MALE">
+  <label for="male">MALE</label>
   <br>
-  <input type="radio" id="male">
-  <label for="male">FEMALE</label>
+  <input type="radio" id="female" v-model="sex" value="FEMALE">
+  <label for="female">FEMALE</label>
   <br>
-  <span>Sex:</span>
+  <span>Sex: {{sex}}</span>
 
   <hr>
-  <select>
+  <select v-model="city">
     <option value="">未选择</option>
+    <option :value="city.value" v-for="city in citys">{{city.text}}</option>
   </select>
-  <span>selection:</span>
+  <span>selection:{{city}}</span>
 
   <hr>
-  <input placeholder="失去焦点才更新">
-  <p>输入的数据为:</p>
-  <input placeholder="延迟1s更新">
-  <p>输入的数据为:</p>
+  <input placeholder="失去焦点才更新" v-model="msg2" lazy>
+  <p>输入的数据为:{{msg2}}</p>
+  <input placeholder="延迟1s更新" v-model="msg3" debounce="1000">
+  <p>输入的数据为: {{msg3}}</p>
 </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
+  new Vue({
+    el : '#demo',
+    data : {
+      msg: 'atguigu.com',
+      like: true,
+      names: ['JOHN'],
+      sex: 'FEMALE',
+      citys: [{value:'BJ', text:'北京'}, {value:'XA', text:'雄安'}, {value:'PD', text:'浦东'}],
+      city: 'XA',
+      msg2: 'aaa',
+      msg3: ''
+    },
+    methods : {
+
+    },
+
+    computed : {
+
+    }
+  })
 </script>
 </body>
 </html>
