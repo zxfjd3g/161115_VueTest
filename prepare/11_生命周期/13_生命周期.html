@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div>
+  <button @click="destoryVue">destory vue</button>
+  <p v-show="isShowing">{{msg}}</p>
+</div>
+
+<!--
+vue对象的生命周期
+1. 初始化显示
+  * new vue()
+  * created() : 在此启动异步任务(ajax请求, 定时器)
+  * beforeCompiled()
+  * compiled()
+  * ready()
+2. 销毁vue实例: vm.$destory()
+  * beforeDestory(): 在此做一些收尾的工作: 如清理定时器
+  * destoryed()
+-->
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+  var vue = new Vue({
+    el: 'div',
+    data: {
+      msg: 'atguigu',
+      isShowing: true,
+      persons: []
+    },
+    created: function () {
+      console.log('created() msg='+this.msg);
+
+      this.intervalId = setInterval(() => {
+        console.log('-----');
+        this.isShowing = !this.isShowing;
+      }, 1000);
+
+      //发送ajax请求, 得到 persons
+      var persons = [{name:'Tom'},{name:'JACK'}]
+      this.persons = persons
+    },
+    beforeCompile () {
+      console.log('beforeCompile() msg='+this.msg);
+    },
+    compiled () {
+      console.log('compiled() msg='+this.msg);
+    },
+    ready () {
+      console.log('ready() msg='+this.msg);
+    },
+
+    beforeDestroy () {
+      console.log('beforeDestroy() msg='+this.msg);
+      clearInterval(this.intervalId);
+    },
+
+    destroyed () {
+      console.log('destroyed() msg='+this.msg);
+    },
+
+    methods: {
+      destoryVue () {
+        vue.$destroy();
+      }
+    }
+  });
+</script>
+</body>
+</html>

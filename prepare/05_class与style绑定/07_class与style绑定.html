@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>07_Class与Style绑定</title>
+  <style>
+    .classA {
+      background: red;
+    }
+
+    .classB {
+      color: yellow;
+    }
+  </style>
+</head>
+<body>
+
+<!--
+  动态绑定class
+    :class="a" a是一个data属性
+    :class="{ 'class-a': isA, 'class-b': isB }"   其中isA/isB是布尔型data属性
+    :class="[classA, classB]" 其中classA/classB是字符串值
+  动态绑定style
+    :style="{ color: activeColor, fontSize: fontSize + 'px' }"  其中activeColor/fontSize是data属性
+-->
+
+<div id="demo">
+  <p class="static" :class="c">测试v-bind:class 变量语法</p>
+  <p class="static" :class="{classA:isA, classB:isB}">测试v-bind:class 对象语法</p>
+  <p class="static" :class="['classA', 'classB']">测试v-bind:class 数组语法</p>
+  <p :style="{color: activeColor, fontSize: fontSize + 'px'}">测试v-bind:style</p>
+</div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+  new Vue({
+    el: '#demo',
+    data: {
+      isA: true,
+      isB: false,
+      activeColor: 'red',
+      fontSize: 30,
+      c: 'classA'
+    }
+  });
+</script>
+</body>
+</html>

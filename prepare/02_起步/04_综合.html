@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>04_综合</title>
+</head>
+<body>
+
+<!--
+  综合使用以下技术:
+  1. 页面指令:
+    v-model
+    @click
+    @keyup.enter
+    v-for / $index
+    v-text
+  2. Vue对象
+    初始化数据: data
+    事件处理函数: methods
+-->
+<div id="app">
+  <input type="text" v-model="newTodo" @keyup.enter="addTodo">
+  <ul>
+    <li v-for="todo in todos">
+      <span v-text="todo.text"></span>
+      <button @click="deleteTodo($index)">X</button>
+    </li>
+  </ul>
+</div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+  new Vue({
+    el: '#app',
+    data: {
+      newTodo: '',  //如果不指定初始值, 控制台会输出警告
+      todos: [
+        {text: '吃饭'},
+        {text: '睡觉'},
+        {text: '打豆豆'}
+      ]
+    },
+    methods: {
+      deleteTodo(index) {
+        this.todos.splice(index, 1)
+      },
+      addTodo() {
+        if (this.newTodo) {
+          this.todos.unshift({text: this.newTodo})
+        }
+      }
+    }
+  });
+</script>
+</body>
+</html>

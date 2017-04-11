@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>02_列表</title>
+  <style>
+    [v-cloak] {
+      display: none
+    }
+  </style>
+</head>
+<body>
+<!--功能: 显示信息列表-->
+<!--
+  1. 在data中初始数组数据
+  2. 在页面中遍历显示: v-for
+  3. 避免页面闪现表达式文本
+    指令: v-text
+    指令: v-cloak
+    样式: [v-cloak] { display: none }
+
+   数据:  [
+            {id : 1, name : '吃饭'},
+            {id : 2, name : '睡觉'},
+            {id : 3, name : '打豆豆'}
+          ]
+-->
+<ul id="todos" v-cloak>
+  <!--<li v-for="item in todoList" v-text="item.id+'&#45;&#45;'+item.name"></li>-->
+  <li v-for="item in todoList">{{item.id+'--'+item.name}}</li>
+</ul>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+  var vue = new Vue({
+    el: '#todos',
+    data() {
+      return {
+        todoList: [
+          {id: 1, name: '吃饭'},
+          {id: 2, name: '睡觉'},
+          {id: 3, name: '打豆豆'}
+        ]
+      }
+    }
+  })
+  console.log(vue);
+</script>
+</body>
+</html>

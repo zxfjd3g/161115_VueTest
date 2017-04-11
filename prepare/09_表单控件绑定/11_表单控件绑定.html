@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+1. 使用v-model对表单项数据双向绑定
+  text/textarea
+  checkbox : 绑定boolean/string值
+  radio
+  select
+2. 失去焦点才更新: lazy
+3. 延迟指定时间才更新: debounce='1000'
+-->
+<div id="demo">
+  <span>Message is: {{ message }}</span><br>
+  <input type="text" v-model="message"><br>
+  <textarea v-model="message"></textarea>
+
+  <hr>
+  <input type="checkbox" id="checkbox" v-model="checked">
+  <label for="checkbox">{{checked}}</label>
+
+  <hr>
+  <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+  <label for="jack">Jack</label>
+  <input type="checkbox" id="john" value="John" v-model="checkedNames">
+  <label for="john">John</label>
+  <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+  <label for="mike">Mike</label>
+  <br>
+  <span>Checked names: {{ checkedNames | json }}</span>
+
+  <hr>
+  <input type="radio" id="female" value="female" v-model="sex">
+  <label for="female">MALE</label>
+  <br>
+  <input type="radio" id="male" value="male" v-model="sex">
+  <label for="male">FEMALE</label>
+  <br>
+  <span>Sex: {{ sex }}</span>
+
+  <hr>
+  <select v-model="selection">
+    <option value="">未选择</option>
+    <option v-for="option in options" :value="option.value">
+      {{ option.text }}
+    </option>
+  </select>
+  <span>selection: {{ selection }}</span>
+
+  <hr>
+  <!-- 在 "change" 而不是 "input" 事件中更新 -->
+  <input v-model="msg" lazy placeholder="失去焦点才更新">
+  <p>输入的数据为: {{msg}}</p>
+  <!--延迟指定时间更新-->
+  <input v-model="msg2" debounce="1000" placeholder="延迟1s更新">
+  <p>输入的数据为: {{msg2}}</p>
+
+</div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+  var vm = new Vue({
+    el: '#demo',
+    data: {
+      message: 'atguigu',
+      checked: false,
+      checkedNames: [],
+      sex: 'female',
+      selection: '',
+      options: [
+        {text: 'One', value: 'A'},
+        {text: 'Two', value: 'B'},
+        {text: 'Three', value: 'C'}
+      ]
+    }
+  })
+</script>
+</body>
+</html>

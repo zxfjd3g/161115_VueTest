@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+1. capitalize : 首字母大小
+2. uppercase : 全部大写
+3. lowercase : 全部小写
+4. currency : 货币化
+5. pluralize : 单数/复数处理
+6. json : json格式化
+
+7. limitBy : 限定数组的部分元素(下标)
+8. filterBy : 限定数组的部分元素(值)
+9. orderBy : 对数组进行排序
+-->
+<div id="example">
+  <h2>1. capitalize : 首字母大写</h2>
+  {{message}}---{{message | capitalize}}
+  <h2>2. uppercase : 全部大写</h2>
+  {{message}}---{{message | uppercase}}
+  <h2>3. lowercase : 全部小写</h2>
+  {{message}}---{{message | lowercase}}
+  <h2>4. currency : 货币化</h2>
+  {{123123.123123}}---{{123123.123123 | currency}}---{{123123.123123 | currency 'RMB'}}
+  <h2>5. pluralize : 单数/复数处理</h2>
+  {{count1}} {{count1 | pluralize 'item'}}---{{count2}} {{count2 | pluralize 'item'}}
+  <h2>6. json : json格式化</h2>
+  {{persons}}---{{persons | json}}
+
+  <h2>7. limitBy : 过滤数组的部分元素(下标)</h2>
+  {{words}}---{{words | limitBy 4}}---{{words | limitBy 4 1}}
+  <h2>8. filterBy : 过滤数组的部分元素(值)</h2>
+  查找所有包含'a'的: {{words | filterBy 'a' | json}} <br>
+  查找所有name包含'o'的: {{persons | filterBy 'o' in 'name' | json}}
+  <h2>9. orderBy : 对数组进行排序</h2>
+  根据name升序: {{persons | orderBy 'age' | json}} <br>
+  根据name降序: {{persons | orderBy 'age' -1 | json}} <br>
+</div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+  new Vue({
+    el: '#example',
+    data: {
+      message: 'i Like You',
+      count1: 1,
+      count2: 3,
+      persons: [{name: 'Tom', age: 13}, {name: 'Jack', age: 12},
+        {name: 'Bob', age: 15}, {name: 'Cat', age: 14}],
+      words: ['Tom', 'Jack', 'Bob', 'Cat', 'Mac', 'Pit']
+    }
+  });
+</script>
+</body>
+</html>

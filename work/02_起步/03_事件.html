@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>03_事件</title>
+</head>
+<body>
+<!--
+  1. 绑定监听的指令:
+    v-on:xxx="函数名或函数调用"
+    @xxx="函数名或函数调用"
+  2. 定义事件处理的函数:
+    methods : {
+        函数名 : function(){...}
+    }
+-->
+<div id="app">
+  <p>{{msg}}</p>
+  <button v-on:click="reverseMsg">reverse</button>
+</div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+  var vm = new Vue({
+    el: '#app',
+    data () {
+      return {
+        msg: 'Hello world!'
+      }
+    },
+    methods: {
+      reverseMsg () {//this就是vm对象
+        //alert(this.msg)
+        this.msg = this.msg.split('').reverse().join('')
+        //一旦更新数据, 界面就会自动更新(数据绑定)
+      }
+    }
+  })
+  console.log(vm)
+  vm.msg = 'xfzhang'  //数据代理
+</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .bounce-transition {
+      display: inline-block;
+    }
+
+    /*bounce-in : 弹入*/
+    /*bounce-out : 弹出*/
+    .bounce-enter {
+      -webkit-animation: bounce-in .5s;
+      animation: bounce-in .5s;
+    }
+
+    .bounce-leave {
+      -webkit-animation: bounce-out .5s;
+      animation: bounce-out .5s;
+    }
+
+    /*描述bounce-in动画*/
+    @keyframes bounce-in {
+      0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+      }
+      50% {
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5);
+      }
+      100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+    }
+
+    /*描述bounce-out动画*/
+    @keyframes bounce-out {
+      0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+      50% {
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5);
+      }
+      100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+      }
+    }
+
+    /*兼容chrome and Safari */
+    @-webkit-keyframes bounce-in {
+      0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+      }
+      50% {
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5);
+      }
+      100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+    }
+
+    @-webkit-keyframes bounce-out {
+      0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+      50% {
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5);
+      }
+      100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!--
+bounce-in : 弹入动画
+bounce-out : 弹出动画
+scale(1.5) : 缩放比例
+-->
+
+<div id="anim" class="demo">
+  <span v-show="show" transition="bounce">Look at me!</span>
+  <br>
+  <button @click="show = !show">Toggle</button>
+</div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script>
+  new Vue({
+    el: '#anim',
+    data: {show: true}
+  })
+</script>
+</body>
+</html>

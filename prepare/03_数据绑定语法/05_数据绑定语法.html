@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>05_数据绑定语法</title>
+</head>
+<body>
+<!--
+  1. 表达式 :
+    语法: {{exp}} 或 {{{exp}}}
+    功能: 向页面输出数据
+    可以调用对象的方法
+    使用过滤器
+  2. 强制数据绑定:
+    完整写法:
+      v-bind:xxx='yyy'  //yyy会作为表达式解析执行
+    简洁写法:
+      :xxx='yyy'
+  3. 事件监听:
+    完整写法:
+      v-on:keyup='xxx'
+      v-on:keyup='xxx(参数)'
+      v-on:keyup.enter='xxx'
+    简洁写法:
+      @keyup='xxx'
+      @keyup.enter='xxx'
+-->
+<div id="app">
+
+  <h2>1. 表达式 : {{}} 或 {{{}}}</h2>
+  <p>{{msg}}</p>
+  <p>{{{msg}}}</p>
+  <p>{{msg.toUpperCase()}}</p>
+  <p>{{123123.123123 | currency '￥'}}</p>
+
+  <h2>2. 强制数据绑定:</h2>
+  <a href="{{url}}">百度一下</a> <br>
+  <a v-bind:href="url">百度一下2</a> <br>
+  <a :href="url">百度一下3</a> <br>
+
+  <h2>3. 事件监听:</h2>
+  <input type="text" v-model="username" v-on:keyup.enter="showValue">
+  <input type="text" v-model="username2" @keyup.enter="showValue2('myvalue')">
+
+</div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+  new Vue({
+    el: '#app',
+    data: {
+      msg: '<a href="http://www.atguigu.com">尚硅谷</a>',
+      url: 'http://www.baidu.com'
+    },
+    methods: {
+      showValue () {
+        alert(this.username);
+      },
+      showValue2 (arg) {
+        alert(this.username2 + '----' + arg);
+      }
+    }
+  });
+</script>
+</body>
+</html>
