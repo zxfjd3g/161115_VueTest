@@ -23,15 +23,52 @@
 <div id="example">
 
   <h2>1. 绑定监听</h2>
-
+  <button v-on:click="test1">test1</button>
+  <button @click="test1">test2</button>
+  <button @click="test2($event, 'abc')">test3</button>
   <h2>2. 事件修饰符</h2>
-
+  <div style="width: 400px;height: 400px;background: red" @click="test3">
+    <div style="width: 200px;height: 200px;background: blue" @click.stop="test4"></div>
+  </div>
+  <br>
+  <a href="http://www.baidu.com" @click.prevent="test5">百度</a>
   <h2>3. 按键修饰符</h2>
+
+  <input type="text" @keyup.enter="test6">
+  <input type="text" @keyup.65="test6">
+
 </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
+  new Vue({
+    el : '#example',
+    data : {
 
+    },
+    methods : {
+      test1 (event) {
+        alert(event.target.innerHTML)
+      },
+      test2(event, msg) {
+        alert(event.target.innerHTML+'----'+msg)
+      },
+      test3() {
+        alert('out')
+      },
+      test4() {
+        alert('inner')
+      },
+      test5 () {
+        alert('点击链接')
+      },
+
+      test6(event) {
+        alert(event.target.value)
+      },
+
+    }
+  })
 </script>
 </body>
 </html>
