@@ -14,10 +14,14 @@
     2. 当属性变化时, 回调函数自动调用, 在函数内部进行计算
   计算属性高级:
     通过get/set方法实现对属性数据的显示和监视
+  好处
+    1. 使用简洁
+    2. 有缓存
 -->
 <div id="demo">
   姓: <input type="text" placeholder="First Name" v-model="firstName"><br>
   名: <input type="text" placeholder="Last Name" v-model="lastName"><br>
+  姓名1(单向): <input type="text" placeholder="Full Name" v-model="fullName1"><br>
   姓名1(单向): <input type="text" placeholder="Full Name" v-model="fullName1"><br>
   姓名2(单向): <input type="text" placeholder="Full Name" v-model="fullName2"><br>
   姓名3(双向): <input type="text" placeholder="Full Name2" v-model="fullName3"><br>
@@ -38,7 +42,7 @@
 
     computed : { //用来定义计算属性
       fullName1 () {
-        console.log('fullName1()')
+        console.log('fullName1()-----')
         return this.firstName + '-' + this.lastName
       },
       fullName3: {
