@@ -19,10 +19,10 @@
     事件处理函数: methods
 -->
 <div id="app">
-  <input type="text" v-model="inputTodo" v-on:keyup.enter="addTodo">
+  <input type="text" v-model="inputTodo" @keyup.enter="addTodo">
   <ul>
     <li v-for="todo in todos">
-      {{todo.text}} <button v-on:click="deleteTodo($index)">X</button>
+      {{todo.text}} <button @click="deleteTodo($index)">X</button>
     </li>
   </ul>
 </div>
