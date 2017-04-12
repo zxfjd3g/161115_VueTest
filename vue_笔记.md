@@ -1,11 +1,15 @@
 * Vue.js是什么?
 	* 一位华裔前Google工程师开发的前端js库
+	* 一个MVVM的框架
+	* 核心概念
+	  * 数据绑定
+	  * 组件
   * 与angular.js类似的是声明式开发，但性能高于angular，体积小很多, 比较适合移动端开发
   * 它本身不是全能框架, 只关注UI, 如果需要router/ajax, 可以使用对应插件或使用别的库来实现
   
 * 基本使用
 	* 引入vue.js
-	* 创建Vue对象, 指定选项对象
+	* 创建Vue对象(vm), 指定选项(配置)对象
 		* el : 指定dom标签容器的选择器
 		* data : 指定初始化状态属性数据的对象
 		        对象/函数(返回一个对象)
@@ -18,9 +22,11 @@
 	  * 指定dom标签容器的选择器
 		* Vue就会管理对应的标签及其子标签
 	* data
+	  * 对象或函数类型
 		* 指定初始化状态属性数据的对象
 		* vue对象可以直接访问其属性
 		* 页面中可以直接访问使用
+		* 数据代理: 由vm对象来代理对data中所有属性的操作(读/写)
 	* methods
 		* 包含多个方法的对象
 		* 供页面中的事件指令来绑定回调
@@ -31,7 +37,11 @@
 		* 对状态属性进行计算返回一个新的数据, 供页面获取显示
 		* 一般情况下是相当于是一个只读的属性
 		* 利用set/get方法来实现属性数据的计算读取, 同时监视属性数据的变化
+		* 如何给对象定义get/set属性
+		  * 在创建对象时指定: get name () {return xxx} / set name (value) {}
+		  * 对象创建之后指定: Object.defineProperty(obj, age, {get(){}, set(value){}})
 	* watch
+	  * Vue.$watch()
 		* 包含多个属性监视的对象
 		* 分为一般监视和深度监视
       ```
@@ -45,10 +55,6 @@
   * 对数组的常用方法进行了包装(用于数据绑定)
 	* $remove(item) : 删除数组中对应的元素
 	* $set(index, ele) : 给数组中指定下标指定对应的元素 
-	
-* vue的生命周期
-  * 
-
 
 * 页面指令
 	* v-text/v-html: 指定标签体
@@ -144,3 +150,13 @@
       ```
       v-my-directive='xxx'
       ```
+* 过渡
+  * 利用vue去操控css的动画
+  * transition/animation
+  * 使用
+    * <div v-show="a"  v-if="a" transition="xxx">
+    * 定义css样式
+      * .xxx-transition: 在其中去指定transition/animation
+      * .xxx-enter
+      * .xxx-leave
+  * 动画的钩子函数
