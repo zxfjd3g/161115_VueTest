@@ -18,10 +18,39 @@
 9. orderBy : 对数组进行排序
 -->
 <div id="example">
+  <p>{{msg | capitalize}}</p>
+  <p>{{msg | uppercase}}</p>
+  <p>{{msg | lowercase}}</p>
+  <p>{{price | currency 'RMB'}}</p>
+  <p>{{count}} {{count | pluralize 'item'}}</p>
+  <p>{{persons | json}}</p>
+
+  <ul>
+    <li v-for="p in persons | limitBy 1 2">{{p | json}}</li>
+  </ul>
+
+  <br>
+
+  <ul>
+    <li v-for="p in persons | filterBy 'o' in 'name'">{{p | json}}</li>
+  </ul>
+
+  <ul>
+    <li v-for="p in persons | orderBy 'age' -1">{{p | json}}</li>
+  </ul>
 </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
+  new Vue({
+    el: '#example',
+    data: {
+      msg: 'you Love her!',
+      price: 123123.123123,
+      count: 1,
+      persons: [{name:'Tom', age:13}, {name:'Jack', age:12}, {name:'BoB', age:14}]
+    }
+  })
 </script>
 </body>
 </html>
