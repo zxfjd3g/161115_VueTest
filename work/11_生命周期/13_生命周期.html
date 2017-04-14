@@ -5,22 +5,77 @@
   <title>13_生命周期</title>
 </head>
 <body>
-<div>
-</div>
 <!--
 vue对象的生命周期
 1. 初始化显示
   * new vue()
   * created() : 在此启动异步任务(ajax请求, 定时器)
-  * beforeCompiled()
+  * beforeCompile()
   * compiled()
   * ready()
 2. 销毁vue实例: vm.$destory()
   * beforeDestory(): 在此做一些收尾的工作: 如清理定时器
   * destoryed()
 -->
+  <div id="test">
+    <p v-show="isShow">{{msg}}</p>
+    <button @click="destroyVM">销毁vm</button>
+  </div>
+
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
+  var vm = new Vue({
+    el: '#test',
+    data: {
+      msg: 'atguigu',
+      isShow: true
+    },
+
+    methods: {
+      destroyVM () {
+        alert('destroyVM()')
+        this.$destroy()
+      }
+    },
+
+    created () {
+      console.log('created()')
+      var me = this
+      this.intervalId = setInterval(function () {
+        console.log('-------')
+        me.isShow = !me.isShow
+      }, 1000)
+    },
+
+    beforeCompile() {
+      console.log('beforeCompile')
+    },
+
+    ready () {
+      console.log('ready()')
+    },
+
+    compiled() {
+      console.log('compiled')
+    },
+
+    beforeDestroy() {
+      console.log('beforeDestroy')
+      //清除定时器
+      clearInterval(this.intervalId)
+    },
+
+    destroyed() {
+      console.log('destroyed')
+    },
+  })
+
+  vm.msg2 = 'xxxx'
+  setTimeout(function () {
+    vm.msg = 'xfzhang'
+  }, 2000)
+  console.log(vm)
+
 </script>
 </body>
 </html>
