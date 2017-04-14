@@ -6,11 +6,24 @@
 </head>
 <body>
 <div id="demo">
+  <p v-my-directive="msg"></p>
 </div>
 
 <script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript" src="myPlugin.js"></script>
 <script type="text/javascript">
+  //声明使用指定的插件
+  Vue.use(MyPlugin) //内部会调用MyPlugin.install(Vue)
+  Vue.myGlobalMethod()
 
+  const vm = new Vue({
+    el: '#demo',
+    data: {
+      msg: 'atguigu.com'
+    }
+  })
+
+  vm.$myMethod()
 </script>
 </body>
 </html>
