@@ -56,6 +56,24 @@
 	* $remove(item) : 删除数组中对应的元素
 	* $set(index, ele) : 给数组中指定下标指定对应的元素 
 
+* 过渡
+  * 利用vue去操控css的动画
+  * transition/animation
+  * 使用
+    * <div v-show="a"  v-if="a" transition="xxx">
+    * 定义css样式
+      * .xxx-transition: 在其中去指定transition/animation
+      * .xxx-enter
+      * .xxx-leave
+  * 动画的钩子函数
+
+* 生命周期
+  * vm/组件对象
+  * 生命周期图
+  * 主要的生命周期函数(钩子)
+    * created(): 启动异步任务(发送ajax请求, 启动定时器)
+    * beforeDestroy(): 做一些收尾的工作
+
 * 页面指令
 	* v-text/v-html: 指定标签体
     * v-text : 当作纯文本
@@ -67,14 +85,14 @@
 	* v-for : 遍历
 		* 遍历数组 : v-for="person in persons"   $index
 		* 遍历对象 : v-for="value in person"   $key
-	* v-on : 绑定事件监视
+	* v-on : 绑定事件监听
 		* v-on:事件名, 可以缩写为: @事件名
 		* 监视具体的按键: @keyup.keyCode   @keyup.enter
 		* 阻止事件的冒泡和事件默认行为: @click.stop   @click.prevent
 		* 隐含对象: $event
 	* v-bind : 强制绑定解析表达式  
 		* 很多属性值是不支持表达式的, 就可以使用v-bind
-		* 可以缩写为:  :id='nanme'
+		* 可以缩写为:  :id='name'
 		* :class
 		  * :class="a"
 			* :class="{classA : isA, classB : isB}"
@@ -150,13 +168,3 @@
       ```
       v-my-directive='xxx'
       ```
-* 过渡
-  * 利用vue去操控css的动画
-  * transition/animation
-  * 使用
-    * <div v-show="a"  v-if="a" transition="xxx">
-    * 定义css样式
-      * .xxx-transition: 在其中去指定transition/animation
-      * .xxx-enter
-      * .xxx-leave
-  * 动画的钩子函数
